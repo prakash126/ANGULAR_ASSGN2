@@ -1,0 +1,63 @@
+<div class="container">
+    <h3 class="text-center text-info text-decoration-underline fst-italic">Add Procuts</h3>
+    <div class="AddProduct">
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            <div>
+                <input type="text" [(ngModel)]="prodName" name="" id="" class="form-control">
+            </div>
+            <label for="name">Product Price</label>
+            <div>
+                <input type="text" [(ngModel)]="prodPrice" name="" id="" class="form-control">
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-success" (click)="addProduct()">Add Product</button>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row my-2">
+        <div class="col-lg-4">
+            <input type="text" placeholder="search by id" name="id"  id="" [(ngModel)]="sID" class="form-control">
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <input type="text" placeholder="search by name" name="id" [(ngModel)]="sName"  id="" class="form-control">
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <button class="btn btn-info px-3 mx-1" (click)="searchProd()">Search</button>
+            <button class="btn btn-warning" (click)="clearField()">Clear</button>
+        </div>
+    </div>
+    <h1 class="text-center text-info bg-primary">Product Details</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let prod of prodArray;let i = index">
+                <tr>
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.name}}</td>
+                    <td>{{prod.price | currency:'INR'}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteProd(i)">Delete</button></td>
+                </tr>
+                
+            </ng-container>
+           
+            
+        </tbody>
+    </table>
+    <ng-container>
+        <div *ngIf="isProdFound">
+            <h2 class="text-center text-danger fst-italic">No Product Found</h2>
+        </div>
+    </ng-container>
+</div>
